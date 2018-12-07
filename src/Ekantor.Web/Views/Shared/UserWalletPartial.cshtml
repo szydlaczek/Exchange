@@ -1,0 +1,33 @@
+﻿@model Exchange.Infrastructure.ViewModels.UserWalletViewModel
+<table class="table table-bordered wallet-table" style="caption-side: top">
+    <caption>Currencies</caption>
+    <thead>        
+        <tr>
+            <th>Currency</th>
+            <th>Unit Price</th>
+            <th>Amount</th>
+            <th>Value</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Currencies)
+        {
+        <tr data-Id="@item.Id">
+            <td>@item.Currency</td>
+            <td>@item.UnitPrice</td>
+            <td>@item.Amount</td>
+            <td>@item.Value</td>
+            <td>
+                <button class="btn table-button sell">Sell</button>
+            </td>
+        </tr>
+        }
+        <tr style="height:50px">
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td colspan="5">@Model.AmountPLN</td>
+        </tr>
+    </tbody>
+</table>

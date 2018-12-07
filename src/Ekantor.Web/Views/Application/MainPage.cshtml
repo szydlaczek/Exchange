@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "MainPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid wallets-container">
+    <div class="row">
+        <div class="col-xl-6 system-wallet"></div>        
+        <div class="col-xl-6 user-wallet"></div>
+    </div>
+</div>
+<script>
+    function loadSystemCurrencies() {
+        $.ajax({
+            url: "GetCurrentValues",
+            type: "GET",
+            success: function (data) {
+                $('.system-wallet').html(data);                
+            },            
+        });
+    }
+    function loadUserWallet() {
+        $.ajax({
+            url: "GetUserWallet",
+            type: "GET",
+            success: function (data) {                
+                $('.user-wallet').html(data);
+            },
+        });
+    }
+    loadSystemCurrencies();
+    loadUserWallet();
+    setInterval(function () {
+        loadSystemCurrencies(); // this will run after every 5 seconds
+        loadUserWallet();
+    }, 5000);
+</script>
+

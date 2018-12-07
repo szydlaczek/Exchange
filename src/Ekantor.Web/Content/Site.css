@@ -1,0 +1,149 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar {
+    
+    width:80%;
+    max-width: 80%;
+    margin: 0px auto;
+    padding: 15px;
+    
+}
+
+.navbar > .header-content
+{
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid #000;
+    padding-left: 30px;
+    min-height:60px;
+}
+
+
+caption
+{
+    caption-side:top;
+    border: 1px solid #000;
+    padding-left: 30px;
+}
+.wallet-table {
+    width: 100%;
+    caption-side: top !important;
+    border: 1px solid #000;
+}
+.wallet-table td
+{
+    padding-left: 15px;
+    vertical-align: middle;
+    
+}
+.wallet-table > thead{
+    background: #ccc;
+}
+.wallet-table > thead th
+{
+    padding-left: 15px;
+}
+table.table-bordered {
+    border: 1px solid #000;
+    margin-top: 20px;
+}
+
+    table.table-bordered > thead > tr > th {
+        border: 1px solid #000;
+        vertical-align: central;
+    }
+
+    table.table-bordered > tbody > tr > td {
+        border: 1px solid #000;
+        vertical-align: central;
+    }
+
+.body-content
+{
+    width:80%;
+    max-width:80%;
+    padding: 0px;
+    margin-top: 20px;
+}
+.table-button {
+    border: 1px solid #000;
+    width:70%;
+}
+.vertical-center {
+    height: 60px;
+    /*line-height: 60px;*/    
+}
+.vertical-center h6, .vertical-center h3, .vertical-center fa {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;        
+    }
+.text-align-right
+{
+    text-align:right;
+}
+.flex
+{
+    display:flex;
+    flex-wrap:wrap;
+}
+.flex-row {
+    flex-direction: row;
+}
+.flex-align-center {
+    align-items: center
+}
+.flex-justify-contend-end{
+    justify-content: flex-end;
+}
+.flex > *{
+    margin-right: 7px;
+}
+
+.modal-window {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+}
+.modal-fade-in {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.error-message > span {
+    color: #c51244;
+}
+.logoff {
+    cursor:pointer;
+}
+

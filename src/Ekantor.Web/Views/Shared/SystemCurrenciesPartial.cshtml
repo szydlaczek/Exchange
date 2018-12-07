@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Exchange.Infrastructure.ViewModels.SystemCurrencyViewModel>
+<table class="table table-bordered wallet-table" style="caption-side: top">
+    <caption>Currencies, Rates from: @Model.FirstOrDefault().LastRateDate</caption>
+    <thead>        
+        <tr>
+            <th>Currency</th>
+            <th>Unit</th>
+            <th>Value</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+        <tr data-Id="@item.Id">
+            <td>@item.Currency</td>
+            <td>@item.Unit</td>
+            <td>@item.Value</td>
+            <td>
+                <button class="btn table-button purchase">Buy</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

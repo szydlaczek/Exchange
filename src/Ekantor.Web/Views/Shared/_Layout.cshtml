@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    @Html.Partial("HeaderPartial")   
+    <div class="container body-content">
+        @RenderBody()        
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Exchange application</p>
+        </footer>
+    </div>
+    @*<div class="modal-window" id="modal-window"></div>*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/loadmodal");
+    @RenderSection("scripts", required: false)
+</body>
+</html>
