@@ -1,7 +1,4 @@
 ﻿using Exchange.Infrastructure.Commands;
-using Exchange.Infrastructure.Dtos;
-using Exchange.Infrastructure.Providers;
-using Exchange.Infrastructure.Queries;
 using MediatR;
 using Quartz;
 using System.Threading.Tasks;
@@ -44,7 +41,7 @@ namespace Exchange.Infrastructure.Sheduler
             //    {
             //        CurrenciesDto = (CurrenciesDto)result.Data
             //    });
-            //}                         
+            //}
         }
     }
 }

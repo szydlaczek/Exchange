@@ -1,8 +1,8 @@
 ﻿using Exchange.Infrastructure.Context;
 using Exchange.Infrastructure.ViewModels;
+using System;
 using System.Data.Entity;
 using System.Linq;
-using System;
 using System.Threading.Tasks;
 
 namespace Exchange.Infrastructure.UseCases
@@ -15,7 +15,6 @@ namespace Exchange.Infrastructure.UseCases
 
         public async Task<IRequestResult> GetCurrencies()
         {
-            
             var wallet = await _context.SystemWallet
                 .Include(c => c.AvailableCurrencies)
                 .FirstOrDefaultAsync();

@@ -29,7 +29,7 @@ namespace Exchange.Infrastructure.UseCases
 
                         if (currencyModel == null)
                         {
-                            currencyModel = new Currency(currency.Name, currency.Code, currency.Unit);                            
+                            currencyModel = new Currency(currency.Name, currency.Code, currency.Unit);
                             _context.Currencies.Add(currencyModel);
                         }
                         else

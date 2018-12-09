@@ -1,7 +1,6 @@
 ﻿using Exchange.Infrastructure.Commands;
 using Exchange.Infrastructure.UseCases;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

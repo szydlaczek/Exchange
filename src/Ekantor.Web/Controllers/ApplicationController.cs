@@ -15,13 +15,12 @@ namespace Exchange.Web.Controllers
         // GET: Application
         public ApplicationController(IMediator mediatorBus) : base(mediatorBus)
         {
-            
         }
 
         public async Task<ActionResult> MainPage()
         {
             var result = await _mediatorBus.Send(new SystemCurrenciesQuery());
-            
+
             return View();
         }
 
@@ -41,7 +40,7 @@ namespace Exchange.Web.Controllers
         public ActionResult ShowPurchaseForm(int? currencyId)
         {
             var purchaseViewModel = new PurchaseCurrencyViewModel();
-            purchaseViewModel.CurrencyId = (int)currencyId; 
+            purchaseViewModel.CurrencyId = (int)currencyId;
             return PartialView("PurchaseForm", purchaseViewModel);
         }
 
@@ -64,7 +63,7 @@ namespace Exchange.Web.Controllers
             return this.Json(new
             {
                 Succeeded = result.Succeeded,
-                Message=result.Succeeded==false ? result.Errors.FirstOrDefault() : string.Empty
+                Message = result.Succeeded == false ? result.Errors.FirstOrDefault() : string.Empty
             });
         }
 
@@ -83,6 +82,7 @@ namespace Exchange.Web.Controllers
                 Message = result.Succeeded == false ? result.Errors.FirstOrDefault() : string.Empty
             });
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> LogOff()

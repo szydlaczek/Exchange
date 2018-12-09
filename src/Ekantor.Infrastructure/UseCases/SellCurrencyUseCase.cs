@@ -1,43 +1,34 @@
 ﻿using Exchange.Core.Models;
 using Exchange.Infrastructure.Context;
-using System;
+using Exchange.Infrastructure.Sheduler;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Exchange.Infrastructure.UseCases
 {
     public class SellCurrencyUseCase : UseCase, IUseCase
     {
-        public SellCurrencyUseCase(ApplicationDbContext context) : base(context)
+        private readonly TransactionUseCase _useCase;
+
+        public SellCurrencyUseCase(ApplicationDbContext context, TransactionUseCase useCase) : base(context)
         {
+            _useCase = useCase;
         }
+
         public async Task<IRequestResult> Sell(string userId, int currencyId, int value)
         {
-            using (DbContextTransaction transaction = _context.Database.BeginTransaction())
-            {
-                User user = await _context.Users.Include(w => w.Wallet).Where(u => u.Id == userId).FirstOrDefaultAsync();
-                SystemWallet systemWallet = _context.SystemWallet.Include(c => c.AvailableCurrencies).FirstOrDefault();
-                try
-                {
+            if (value <= 0)
+                return new RequestResult(false, new List<string> { "Please enter quantity greater than 0" }, null);
+            if (!Shared.Instance.ApiIsAlive)
+                return new RequestResult(false, new List<string> { "Currency server is unavailable" }, null);
 
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    transaction.Rollback();
-                    await _context.Entry(systemWallet).ReloadAsync();
-                    await _context.Entry(user.Wallet).ReloadAsync();
-                    return await this.Sell(userId, currencyId, value);
-                }
-                catch (Exception exc)
-                {
-                    //log
-                }
-                return new RequestResult(true, null);
-            }
+            User user = await _context.Users.Include(w => w.Wallet).Where(u => u.Id == userId).FirstOrDefaultAsync();
+            SystemWallet systemWallet = _context.SystemWallet.Include(c => c.AvailableCurrencies).FirstOrDefault();
+            Currency currency = await _context.Currencies.Where(c => c.Id == currencyId).FirstOrDefaultAsync();
+
+            return await _useCase.MakeTransaction(user, systemWallet, currency, value);
         }
     }
 }

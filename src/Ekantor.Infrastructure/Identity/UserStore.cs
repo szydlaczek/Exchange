@@ -44,7 +44,7 @@ namespace Exchange.Infrastructure.Identity
 
         public Task<User> FindByEmailAsync(string email)
         {
-            var user=_context.Users.Where(u => u.EmailAddress.Equals(email, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var user = _context.Users.Where(u => u.EmailAddress.Equals(email, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
             return Task.FromResult(user);
         }
 

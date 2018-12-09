@@ -7,7 +7,7 @@ namespace Exchange.Infrastructure.IOC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerDependency();
+            builder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerRequest();
         }
     }
 }

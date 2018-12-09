@@ -11,12 +11,14 @@ namespace Exchange.Web.Controllers
         {
             _mediatorBus = mediatorBus;
         }
+
         protected override void OnException(ExceptionContext filterContext)
         {
             filterContext.ExceptionHandled = true;
             if (filterContext.HttpContext.Request.IsAjaxRequest())
             {
-                filterContext.Result = this.Json(new {
+                filterContext.Result = this.Json(new
+                {
                     Succeeded = false,
                     Message = "Something goes wron, pleas try again later"
                 });

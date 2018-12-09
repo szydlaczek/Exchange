@@ -19,10 +19,9 @@ namespace Exchange.Core.Models
 
         protected UserWalletCurrency()
         {
-
         }
 
-        public UserWalletCurrency(Currency currency , int quantity)
+        public UserWalletCurrency(Currency currency, int quantity)
         {
             Quantity = quantity;
             Currency = currency;
@@ -30,14 +29,12 @@ namespace Exchange.Core.Models
 
         public void ChangeQuantity(int quantity)
         {
-            quantity += quantity;
+            Quantity += quantity;
         }
-        
 
         public decimal GetValue()
         {
             return (decimal)((Quantity / Currency.Unit) * Currency.GetLastPurchaseValue());
         }
-
     }
 }

@@ -28,7 +28,7 @@ namespace Exchange.Infrastructure.UseCases
             user.FirstName = newUser.FirstName;
             user.LastName = newUser.LastName;
             UserWallet wallet = new UserWallet(1500);
-            
+
             user.Wallet = wallet;
             var result = await _applicationUserManager.CreateAsync(user, newUser.Password);
             if (!result.Succeeded)

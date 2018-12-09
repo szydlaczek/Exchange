@@ -26,6 +26,11 @@ namespace Exchange.Core.Models
             Currencies = new HashSet<UserWalletCurrency>();
         }
 
+        public void SetAmount(decimal amountPLN)
+        {
+            AmountPLN += amountPLN;
+        }
+
         public IOperationResult BuyCurrency(Currency currency, int value, decimal price)
         {
             if (AmountPLN < price)
@@ -36,7 +41,7 @@ namespace Exchange.Core.Models
             var walletCurrency = Currencies.Where(c => c.CurrencyId == currency.Id).FirstOrDefault();
             if (walletCurrency == null)
             {
-                Currencies.Add(new UserWalletCurrency(currency,value));
+                Currencies.Add(new UserWalletCurrency(currency, value));
             }
             else
             {
@@ -47,12 +52,14 @@ namespace Exchange.Core.Models
             return new OperationResult(true, string.Empty, null);
         }
 
-        public IOperationResult SellCurrency(int currencyId, int value)
+        public IOperationResult SellCurrency(Currency currency, int value, double price)
         {
-            var walletCurrency = Currencies.Where(c => c.CurrencyId == currencyId).FirstOrDefault();
+            var walletCurrency = Currencies.Where(c => c.CurrencyId == currency.Id).FirstOrDefault();
             if (walletCurrency.Quantity < value)
                 return new OperationResult(false, "You don't have enought currency", null);
-            return null;
+            walletCurrency.ChangeQuantity(-value);
+            AmountPLN += (decimal)price;
+            return new OperationResult(true, string.Empty, null);
         }
     }
 }

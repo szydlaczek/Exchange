@@ -18,7 +18,6 @@ namespace Exchange.Core.Models
 
         protected CurrencyValue()
         {
-
         }
 
         public CurrencyValue(double purchasePrice, double sellPrice, double averagePrice, DateTime publicationDate)

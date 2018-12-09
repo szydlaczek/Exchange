@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Exchange.Infrastructure.ViewModels
+﻿namespace Exchange.Infrastructure.ViewModels
 {
     public class UserCurrencyViewModel
     {
@@ -13,6 +7,5 @@ namespace Exchange.Infrastructure.ViewModels
         public double UnitPrice { get; set; }
         public int Amount { get; set; }
         public decimal Value { get; set; }
-        
     }
 }

@@ -186,6 +186,7 @@
     <Compile Include="UseCases\RequestResult.cs" />
     <Compile Include="UseCases\RegisterUserUseCase.cs" />
     <Compile Include="UseCases\SellCurrencyUseCase.cs" />
+    <Compile Include="UseCases\TransactionUseCase.cs" />
     <Compile Include="UseCases\UseCase.cs" />
     <Compile Include="Validation\LogInViewModelValidator.cs" />
     <Compile Include="Validation\RegisterViewModelValidator.cs" />

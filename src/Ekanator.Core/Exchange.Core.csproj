@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CurrencyValue.cs" />
+    <Compile Include="Models\ICurrencyTransaction.cs" />
     <Compile Include="Models\IOperationResult.cs" />
     <Compile Include="Models\OperationResult.cs" />
     <Compile Include="Models\Role.cs" />

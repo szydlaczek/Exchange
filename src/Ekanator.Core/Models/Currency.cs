@@ -23,6 +23,7 @@ namespace Exchange.Core.Models
             Unit = unit;
             Values = new HashSet<CurrencyValue>();
         }
+
         public Currency(string name, string code, int unit, CurrencyValue currencyValue)
         {
             Name = name;
