@@ -14,17 +14,17 @@ namespace Exchange.Infrastructure.UseCases
         {
         }
 
-        public async Task<IRequestResult> MakeTransaction(ISellCurrency From, IBuyCurrency To, Currency currency, int quantity)
+        public async Task<IRequestResult> MakeTransaction(ISellCurrency seller, IBuyCurrency buyer, Currency currency, int quantity)
         {
             using (DbContextTransaction transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    var sellResult = await From.SellCurrency(currency, quantity);
+                    var sellResult = await seller.SellCurrency(currency, quantity);
                     if (!sellResult.Succeeded)
                         return new RequestResult(false, new List<string> { sellResult.Message }, null);
                     await _context.SaveChangesAsync();
-                    var buyResult = await To.BuyCurrency(currency, quantity);
+                    var buyResult = await buyer.BuyCurrency(currency, quantity);
                     if (!buyResult.Succeeded)
                         return new RequestResult(false, new List<string> { buyResult.Message }, null);
                     await _context.SaveChangesAsync();
@@ -33,9 +33,9 @@ namespace Exchange.Infrastructure.UseCases
                 catch (DbUpdateConcurrencyException ex)
                 {
                     transaction.Rollback();
-                    await _context.Entry(From).ReloadAsync();
-                    await _context.Entry(To).ReloadAsync();
-                    return await this.MakeTransaction(From, To, currency, quantity);
+                    await _context.Entry(seller).ReloadAsync();
+                    await _context.Entry(buyer).ReloadAsync();
+                    return await this.MakeTransaction(seller, buyer, currency, quantity);
                 }
                 catch (Exception ex)
                 {

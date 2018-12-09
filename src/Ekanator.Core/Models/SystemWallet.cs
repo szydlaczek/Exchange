@@ -49,14 +49,8 @@ namespace Exchange.Core.Models
             if (walletCurrency.Ammount < value)
                 return await Task.FromResult(new OperationResult(false, $"No enought {walletCurrency.Currency.Code} in system", null));
 
-            walletCurrency.AddAmount(-value);
-            decimal price = 0;
-
-            if (unitPrice == 0)
-                price = (decimal)((value / unit) * currency.GetLastSellValue());
-            else
-                price = (decimal)((value / unit) * unitPrice);
-
+            walletCurrency.AddAmount(-value);                                   
+            var price = (decimal)((value / unit) * currency.GetLastSellValue());
             AmountPLN += price;
             return new OperationResult(true, string.Empty, price);
         }
